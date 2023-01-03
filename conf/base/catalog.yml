@@ -1,0 +1,156 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+
+_csv: &csv
+  type: pandas.CSVDataSet
+  load_args:
+    sep: ','
+  save_args:
+    index: False
+
+_excel: &excel
+  type: pandas.ExcelDataSet
+  save_args:
+    index: True
+
+_text: &text
+  type: text.TextDataSet
+  fs_args:
+    open_args_load:
+        encoding: 'utf-8'
+
+dataset:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\01_raw\df.csv
+
+dropped_dataset:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\02_intermediate\dropped_dataset.csv
+
+features:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\03_primary\features.csv
+
+preprocessed_dataset:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\03_primary\preprocessed_dataset.csv 
+
+training:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\04_feature\data_train.csv 
+
+testing:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\04_feature\data_test.csv 
+
+bootstrapped_data_train:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\04_feature\bootstrapped_data_train.csv 
+
+data_train:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\data_train.csv 
+
+data_test:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\data_test.csv 
+
+label_train:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\label_train.csv 
+
+label_test:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\label_test.csv 
+
+training_results_cat:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\07_model_output\training_results_cat.csv 
+
+testing_results_cat:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\07_model_output\testing_results_cat.csv
+
+metrics_evaluation:
+  <<: *text
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\metrics.txt
+
+confusion_matrix:
+  <<: *excel
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\confusion_matrix.xlsx 
+
+training_results_cat_final:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\training_results_cat_final.csv 
+
+training_distribution:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\training_distribution.csv 
+
+testing_results_cat_final:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\testing_results_cat_final.csv 
+
+testing_distribution:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\testing_distribution.csv 
+
+model_cat:
+  type: pickle.PickleDataSet
+  filepath: D:\KEDRO\customer-churn\data/06_models/model_cat.pickle
+  versioned: true
+
+data_oot:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\01_raw\df_oot.csv 
+
+data_gojek:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\01_raw\data_gojek.csv 
+
+data_grab:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\01_raw\df_grab.csv 
+
+X_gojek:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\X_gojek.csv 
+
+y_gojek:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\y_gojek.csv 
+
+X_grab:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\X_grab.csv 
+
+y_grab:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\05_model_input\y_grab.csv 
+
+gojek_prediction:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\07_model_output\gojek_prediction.csv 
+
+grab_prediction:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\07_model_output\grab_prediction.csv
+
+gojek_prediction_final:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\gojek_prediction_final.csv 
+
+gojek_distribution:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\gojek_distribution.csv 
+
+grab_prediction_final:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\grab_prediction_final.csv 
+
+grab_distribution:
+  <<: *csv
+  filepath: D:\KEDRO\customer-churn\data\08_reporting\grab_distribution.csv 
+
