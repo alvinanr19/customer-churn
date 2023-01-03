@@ -39,8 +39,8 @@ def model_cat(X_train:pd.DataFrame, y_train:pd.DataFrame, X_test:pd.DataFrame, y
 
     clf = CatBoostClassifier()
     params = {'iterations': [25, 30],
-              'learning_rate': [0.001, 0.005, 0.01],
-              'depth': [4, 5, 6],
+              'learning_rate': [0.01, 0.03],
+              'depth': [3,4,5],
               'loss_function': ['LogLoss', 'CrossEntropy'],
               'l2_leaf_reg': np.logspace(-20, -19, 3),
               'leaf_estimation_iterations': [10],
@@ -48,7 +48,7 @@ def model_cat(X_train:pd.DataFrame, y_train:pd.DataFrame, X_test:pd.DataFrame, y
     #           'use_best_model': ['True'],
               'logging_level':['Silent'],
               'random_strength':[0,5,10],
-              'random_seed': [33, 42]
+              'random_seed': [42]
              }
     roc_auc_ovr_scorer = make_scorer(roc_auc_score, needs_proba=True,
                                      multi_class='ovr')
